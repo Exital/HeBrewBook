@@ -174,6 +174,7 @@ cmd_init() {
   local target="${1:-/in}"
   mkdir -p "$target"
   cp -r /examples/hebrew-only "$target/hebrew-only"
+  cp -r /examples/english-only "$target/english-only"
   cp -r /examples/mixed-he-en "$target/mixed-he-en"
   log "Scaffolded example books into $target"
 }
