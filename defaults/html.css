@@ -1,0 +1,98 @@
+@page {
+  margin: 20mm 18mm;
+}
+
+body {
+  direction: rtl;
+  text-align: right;
+  font-family: "Noto Sans Hebrew", "FreeSans", sans-serif;
+  line-height: 1.6;
+  font-size: 11pt;
+}
+
+h1, h2, h3, h4 {
+  direction: rtl;
+  text-align: right;
+  font-family: "Noto Sans Hebrew", "FreeSans", sans-serif;
+  page-break-after: avoid;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+p {
+  margin: 0.4em 0;
+}
+
+ul, ol {
+  margin: 0.5em 1.5em 0.5em 0;
+  padding: 0;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 1em 0;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 0.3em 0.5em;
+}
+
+th {
+  background-color: #f0f0f0;
+}
+
+a {
+  color: #3366cc;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+header, footer {
+  font-size: 9pt;
+  color: #666;
+}
+
+.page-header {
+  position: running(page-header);
+}
+
+.page-footer {
+  position: running(page-footer);
+}
+
+@page {
+  @top-center {
+    content: element(page-header);
+  }
+  @bottom-center {
+    content: element(page-footer) " — " counter(page);
+  }
+}
+
+blockquote {
+  border-right: 3px solid #ccc;
+  margin: 0.8em 0;
+  padding: 0.2em 1em 0.2em 0;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+}
+
+.footnotes {
+  font-size: 9pt;
+}
+
+.ltr {
+  direction: ltr;
+  text-align: left;
+  font-family: sans-serif;
+}
+

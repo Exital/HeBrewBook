@@ -1,0 +1,51 @@
+body {
+  direction: ltr;
+  text-align: left;
+  font-family: "FreeSans", sans-serif;
+  line-height: 1.6;
+  font-size: 1rem;
+  margin: 0;
+  padding: 0 1.5rem;
+}
+
+h1, h2, h3, h4 {
+  direction: ltr;
+  text-align: left;
+  font-family: "FreeSans", sans-serif;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+p {
+  margin: 0.4em 0;
+}
+
+ul, ol {
+  margin: 0.5em 0 0.5em 1.5em;
+  padding: 0;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 1em 0;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 0.3em 0.5em;
+}
+
+th {
+  background-color: #f0f0f0;
+}
+
+a {
+  color: #3366cc;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
