@@ -1,6 +1,7 @@
 ## hebrew-md-book
 
 [![CI](https://github.com/<user>/HeBrewBook/actions/workflows/ci.yml/badge.svg)](https://github.com/<user>/HeBrewBook/actions/workflows/ci.yml)
+[![Tests](https://img.shields.io/github/actions/workflow/status/<user>/HeBrewBook/ci.yml?branch=main&label=tests)](https://github.com/<user>/HeBrewBook/actions/workflows/ci.yml)
 [![Release](https://img.shields.io/github/v/tag/<user>/HeBrewBook?label=release)](https://github.com/<user>/HeBrewBook/releases)
 
 Small, version‑pinned Docker image that converts **Hebrew and English Markdown** into **EPUB** and **PDF**, with correct RTL support and sensible defaults for automation pipelines.

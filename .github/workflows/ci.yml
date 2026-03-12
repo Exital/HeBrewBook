@@ -1,6 +1,8 @@
 name: CI
 
 on:
+  pull_request:
+    branches: [ main ]
   push:
     tags: [ "v*" ]
 
@@ -23,17 +25,26 @@ jobs:
           push: false
           platforms: linux/amd64,linux/arm64
 
-      - name: Run example build (Hebrew only)
+      - name: Build and test examples
         run: |
           docker build -t hebrew-md-book:test .
-          mkdir -p out
-          docker run --rm \
-            -v "$PWD/examples/hebrew-only:/in" \
-            -v "$PWD/out:/out" \
-            hebrew-md-book:test \
-            build
-          test -s out/book.epub
-          test -s out/book.pdf
+
+          # Loop over all example directories under examples/
+          for dir in examples/*; do
+            if [ -d "$dir" ]; then
+              name="$(basename "$dir")"
+              out_dir="out_${name}"
+              echo "==> Testing example: $name"
+              mkdir -p "$out_dir"
+              docker run --rm \
+                -v "$PWD/$dir:/in" \
+                -v "$PWD/$out_dir:/out" \
+                hebrew-md-book:test \
+                build
+              test -s "$out_dir/book.epub"
+              test -s "$out_dir/book.pdf"
+            fi
+          done
 
   release:
     if: startsWith(github.ref, 'refs/tags/v')
