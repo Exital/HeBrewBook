@@ -54,7 +54,7 @@ jobs:
       contents: read
       packages: write
     env:
-      IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/hebrew-md-book
+      IMAGE_NAME: ghcr.io/exital/hebrew-md-book
     steps:
       - uses: actions/checkout@v4
 
