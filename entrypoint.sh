@@ -260,10 +260,21 @@ run_build() {
     fi
     log "HTML written to: $html_out"
 
-    if [[ -d "$INPUT_DIR_RES/images" ]]; then
-      log "Copying images directory for PDF assets..."
-      cp -r "$INPUT_DIR_RES/images" "$OUTPUT_DIR_RES/images"
-    fi
+    # WeasyPrint resolves relative URLs in the HTML against the HTML file location
+    # (under /out). Resources (images, etc.) live under /in, so copy all input
+    # subdirs into output so that paths like images/design1.png resolve to
+    # /out/images/design1.png.
+    for subdir in "$INPUT_DIR_RES"/*/; do
+      if [[ -d "$subdir" ]]; then
+        name="${subdir%/}"
+        name="${name##*/}"
+        if [[ -n "$name" ]]; then
+          log "Copying input subdir '$name' for PDF assets..."
+          mkdir -p "$OUTPUT_DIR_RES"
+          cp -r "$subdir" "$OUTPUT_DIR_RES/$name"
+        fi
+      fi
+    done
 
     log "Building PDF via WeasyPrint..."
     if ! weasyprint "$html_out" "$pdf_out"; then

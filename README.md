@@ -32,6 +32,8 @@ This will:
 - Discover Markdown files under `/in` (default `*.md`, recursively).
 - Generate `book.epub` and `book.pdf` (via an intermediate `book.html`) into `/out`.
 
+Images and other assets in subdirectories of `/in` (e.g. `images/`, `figures/`) are automatically copied into `/out` for the PDF build, so relative paths in your Markdown (e.g. `![](images/cover.png)`) resolve correctly.
+
 See `docs/configuration.md` for full options and `examples/` for sample books.
 
 ### Scaffolding example books (`init`)
