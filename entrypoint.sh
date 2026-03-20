@@ -270,8 +270,10 @@ run_build() {
         name="${name##*/}"
         if [[ -n "$name" ]]; then
           log "Copying input subdir '$name' for PDF assets..."
-          mkdir -p "$OUTPUT_DIR_RES"
-          cp -r "$subdir" "$OUTPUT_DIR_RES/$name"
+          mkdir -p "$OUTPUT_DIR_RES/$name"
+          # Copy directory contents (not the directory itself) to avoid
+          # nested paths like /out/images/images on repeated builds.
+          cp -a "$subdir"/. "$OUTPUT_DIR_RES/$name"/
         fi
       fi
     done
