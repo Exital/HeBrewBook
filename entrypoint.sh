@@ -236,12 +236,14 @@ run_build() {
   if [[ "$do_epub" == "1" ]]; then
     log "Building EPUB..."
     verbose "Running pandoc for EPUB."
-    if ! pandoc "${MARKDOWN_FILES[@]}" \
+    # Run Pandoc with cwd = input dir so metadata paths (e.g. cover-image: images/cover.jpg)
+    # resolve relative to the book root without relying on the container workdir.
+    if ! ( cd "$INPUT_DIR_RES" && pandoc "${MARKDOWN_FILES[@]}" \
       "${METADATA_ARG[@]}" \
       --resource-path="$INPUT_DIR_RES" \
       --css="$EPUB_CSS_RES" \
       --toc \
-      -o "$epub_out"; then
+      -o "$epub_out" ); then
       die "Pandoc EPUB build failed."
     fi
     log "EPUB written to: $epub_out"
@@ -249,13 +251,13 @@ run_build() {
 
   if [[ "$do_pdf" == "1" ]]; then
     log "Building HTML for PDF..."
-    if ! pandoc "${MARKDOWN_FILES[@]}" \
+    if ! ( cd "$INPUT_DIR_RES" && pandoc "${MARKDOWN_FILES[@]}" \
       "${METADATA_ARG[@]}" \
       --resource-path="$INPUT_DIR_RES" \
       --css="$HTML_CSS_RES" \
       --toc \
       -t html5 -s \
-      -o "$html_out"; then
+      -o "$html_out" ); then
       die "Pandoc HTML build failed."
     fi
     log "HTML written to: $html_out"
